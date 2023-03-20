@@ -3,6 +3,8 @@ import './results.scss';
 import { Answers } from '../../modules';
 import Button from '../../components/button/Button';
 import { useNavigate } from 'react-router-dom';
+
+
 import './results.scss';
 import { GiCrossMark, GiCheckMark } from 'react-icons/gi';
 
@@ -67,24 +69,43 @@ const Results = ({ userAnswers }: Props) => {
                     Back to Trivia
                 </Button>
             </div>
-            <div className='answers'>
-                {userAnswers.map((answer, index) => {
-                    // using find method to find and answer from answers array  where question ID matches question ID from user_answer
-                    const selectedAnswer = answer.answers.find(
-                        (a) => a.id === answer.users_answer.answer_id
-                    );
 
-                    return (
-                        <div className='answers__card' key={answer.question_id}>
+            {showAnswers && (
+                <div className='answers'>
+                    {userAnswers.map((answer, index) => {
+                        const selectedAnswer = answer.answers.find(
+                            (a) => a.id === answer.users_answer.answer_id
+                        );
+
+                        return (
                             <div
-                                // styling class used based on if answer was correct
-                                className={`answers__question ${
-                                    selectedAnswer?.correct
-                                        ? 'answers__question--correct'
-                                        : 'answers__question--incorrect'
-                                }`}
+                                className='answers__card'
+                                key={answer.question_id}
                             >
-                                <h3>{answer.question}</h3>
+                                <div
+                                    className={`answers__question ${
+                                        selectedAnswer?.correct
+                                            ? 'answers__question--correct'
+                                            : 'answers__question--incorrect'
+                                    }`}
+                                >
+                                    <h3>{answer.question}</h3>
+
+                                    <p>
+                                        {index + 1}/{userAnswers.length}
+                                    </p>
+                                </div>
+                                <div className='answers__possibleAnswers'>
+                                    <ul>
+                                        {answer.answers.map(
+                                            (possibleAnswer) => (
+                                                <li key={possibleAnswer.id}>
+                                                    {possibleAnswer.answer}
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </div>
 
                                 <p>
                                     {index + 1}/{userAnswers.length}
@@ -141,48 +162,6 @@ const Results = ({ userAnswers }: Props) => {
                                         }
                                     })}
                                 </ul>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-
-            {showAnswers && (
-                <div className='answers'>
-                    {userAnswers.map((answer, index) => {
-                        const selectedAnswer = answer.answers.find(
-                            (a) => a.id === answer.users_answer.answer_id
-                        );
-
-                        return (
-                            <div
-                                className='answers__card'
-                                key={answer.question_id}
-                            >
-                                <div
-                                    className={`answers__question ${
-                                        selectedAnswer?.correct
-                                            ? 'answers__question--correct'
-                                            : 'answers__question--incorrect'
-                                    }`}
-                                >
-                                    <h3>{answer.question}</h3>
-
-                                    <p>
-                                        {index + 1}/{userAnswers.length}
-                                    </p>
-                                </div>
-                                <div className='answers__possibleAnswers'>
-                                    <ul>
-                                        {answer.answers.map(
-                                            (possibleAnswer) => (
-                                                <li key={possibleAnswer.id}>
-                                                    {possibleAnswer.answer}
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </div>
                             </div>
                         );
                     })}
