@@ -78,34 +78,18 @@ const Results = ({ userAnswers }: Props) => {
                         );
 
                         return (
+                            <><div
+                            className='answers__card'
+                            key={answer.question_id}
+                        >
                             <div
-                                className='answers__card'
-                                key={answer.question_id}
+                                className={`answers__question ${
+                                    selectedAnswer?.correct
+                                        ? 'answers__question--correct'
+                                        : 'answers__question--incorrect'
+                                }`}
                             >
-                                <div
-                                    className={`answers__question ${
-                                        selectedAnswer?.correct
-                                            ? 'answers__question--correct'
-                                            : 'answers__question--incorrect'
-                                    }`}
-                                >
-                                    <h3>{answer.question}</h3>
-
-                                    <p>
-                                        {index + 1}/{userAnswers.length}
-                                    </p>
-                                </div>
-                                <div className='answers__possibleAnswers'>
-                                    <ul>
-                                        {answer.answers.map(
-                                            (possibleAnswer) => (
-                                                <li key={possibleAnswer.id}>
-                                                    {possibleAnswer.answer}
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </div>
+                                <h3>{answer.question}</h3>
 
                                 <p>
                                     {index + 1}/{userAnswers.length}
@@ -113,56 +97,72 @@ const Results = ({ userAnswers }: Props) => {
                             </div>
                             <div className='answers__possibleAnswers'>
                                 <ul>
-                                    {answer.answers.map((possibleAnswer) => {
-                                        // if user answer and correct answer matches
-                                        if (
-                                            possibleAnswer.correct &&
-                                            possibleAnswer.id ===
-                                                answer.users_answer.answer_id
-                                        ) {
-                                            return (
-                                                <li key={possibleAnswer.id}>
-                                                    <div className='answers__option'>
-                                                        {possibleAnswer.answer}
-                                                        <GiCheckMark color='green' />
-                                                    </div>
-                                                </li>
-                                            );
-                                            // if user answer is incorrect but it matches answer option
-                                        } else if (
-                                            !possibleAnswer.correct &&
-                                            possibleAnswer.id ===
-                                                answer.users_answer.answer_id
-                                        ) {
-                                            return (
-                                                <li key={possibleAnswer.id}>
-                                                    <div className='answers__option'>
-                                                        {possibleAnswer.answer}
-                                                        <GiCrossMark color='red' />
-                                                    </div>
-                                                </li>
-                                            );
-                                            // if the answer option is correct but not selected by user
-                                        } else if (possibleAnswer.correct) {
-                                            return (
-                                                <li key={possibleAnswer.id}>
-                                                    <div className='answers__option'>
-                                                        {possibleAnswer.answer}
-                                                        <GiCheckMark color='green' />
-                                                    </div>
-                                                </li>
-                                            );
-                                            // if none of the above is true returns simple li element
-                                        } else {
-                                            return (
-                                                <li key={possibleAnswer.id}>
-                                                    {possibleAnswer.answer}
-                                                </li>
-                                            );
-                                        }
-                                    })}
+                                    {answer.answers.map(
+                                        (possibleAnswer) => (
+                                            <li key={possibleAnswer.id}>
+                                                {possibleAnswer.answer}
+                                            </li>
+                                        )
+                                    )}
                                 </ul>
                             </div>
+
+                            <p>
+                                {index + 1}/{userAnswers.length}
+                            </p>
+                        </div>
+                        <div className='answers__possibleAnswers'>
+                            <ul>
+                                {answer.answers.map((possibleAnswer) => {
+                                    // if user answer and correct answer matches
+                                    if (
+                                        possibleAnswer.correct &&
+                                        possibleAnswer.id ===
+                                            answer.users_answer.answer_id
+                                    ) {
+                                        return (
+                                            <li key={possibleAnswer.id}>
+                                                <div className='answers__option'>
+                                                    {possibleAnswer.answer}
+                                                    <GiCheckMark color='green' />
+                                                </div>
+                                            </li>
+                                        );
+                                        // if user answer is incorrect but it matches answer option
+                                    } else if (
+                                        !possibleAnswer.correct &&
+                                        possibleAnswer.id ===
+                                            answer.users_answer.answer_id
+                                    ) {
+                                        return (
+                                            <li key={possibleAnswer.id}>
+                                                <div className='answers__option'>
+                                                    {possibleAnswer.answer}
+                                                    <GiCrossMark color='red' />
+                                                </div>
+                                            </li>
+                                        );
+                                        // if the answer option is correct but not selected by user
+                                    } else if (possibleAnswer.correct) {
+                                        return (
+                                            <li key={possibleAnswer.id}>
+                                                <div className='answers__option'>
+                                                    {possibleAnswer.answer}
+                                                    <GiCheckMark color='green' />
+                                                </div>
+                                            </li>
+                                        );
+                                        // if none of the above is true returns simple li element
+                                    } else {
+                                        return (
+                                            <li key={possibleAnswer.id}>
+                                                {possibleAnswer.answer}
+                                            </li>
+                                        );
+                                    }
+                                })}
+                            </ul>
+                        </div></>
                         );
                     })}
                 </div>
