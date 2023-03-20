@@ -3,7 +3,7 @@ import './button.scss';
 
 interface ButtonProps {
     color?: string;
-    onClick: (e: React.FormEvent) => void;
+    onClick?: (e: React.FormEvent) => void;
     active?: boolean;
     children?: React.ReactNode;
 }

@@ -10,17 +10,25 @@ import { Answers } from './modules';
 // import { useState } from 'react';
 
 const App: React.FC = () => {
-
-
+    const [selectedTopic, setSelectedTopic] = useState<string>('');
     const [userAnswers, setUserAnswers] = useState<Answers[]>([]);
 
     return (
         <Routes>
-            <Route path='/' element={<Home />} />
+            <Route
+                path='/'
+                element={
+                    <Home
+                        selectedTopic={selectedTopic}
+                        setSelectedTopic={setSelectedTopic}
+                    />
+                }
+            />
             <Route
                 path='/questions'
                 element={
                     <Questions
+                        selectedTopic={selectedTopic}
                         userAnswers={userAnswers}
                         setUserAnswers={setUserAnswers}
                     />

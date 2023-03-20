@@ -11,31 +11,76 @@ $red: #d90429;
     display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
     .output__card {
-        margin: 5rem;
+        overflow: hidden;
+        margin: 1rem;
         border: 0.2rem solid black;
-        border-radius: 2%;
+        border-radius: 2rem;
         box-shadow: rgba(0, 0, 0, 0.47) 0px 4px 16px;
         background-color: $green;
         text-align: center;
         .output__topic {
-            width: 100%;
             border-bottom: 0.2rem solid black;
             padding: 1rem;
             background-color: $orange;
         }
-        .output__answers {
-            padding: 0.2rem 2rem;
+        .output__counter {
+            padding: 1rem 2rem 0.2rem 2rem;
             text-align: left;
         }
         .output__question {
-            padding: 2rem;
+            padding: 0.5rem 2rem 1rem 2rem;
+            text-align: left;
+        }
+        .output__answers {
+            padding: 0.2rem 2rem;
+            text-align: left;
         }
 
         .output__error {
             color: $red;
             font-weight: bold;
             height: 2rem;
+            transition: all 0.3s ease;
+        }
+        .output__answers input[type='radio'] {
+            display: none;
+        }
+
+        .output__answers input[type='radio'] + label {
+            position: relative;
+            display: inline-block;
+            margin-right: 1.5rem;
+            padding-left: 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #000;
+        }
+
+        .output__answers input[type='radio'] + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 60%;
+            transform: translateY(-50%);
+            width: 1.2rem;
+            height: 1.2rem;
+            border: 0.1rem solid #333;
+            border-radius: 50%;
+            background-color: lightgray;
+            transition: all 0.3s ease;
+        }
+
+        .output__answers input[type='radio']:checked + label:before {
+            background-color: $orange;
+            border-color: $orange;
+        }
+
+        .output__answers input[type='radio']:focus + label:before {
+            box-shadow: 0 0 0 0.3rem rgba(217, 4, 41, 0.5);
         }
     }
 }

@@ -4,9 +4,101 @@ $green: #52b788;
 $yellow: #ffd500;
 $red: #d90429;
 
-.results{
-    background-color: $green;
-    box-sizing: border-box;
+.results {
     min-height: 100vh;
+    background-color: rgb(70, 190, 160);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    .score {
+        width: 50%;
+        margin: 1rem;
+        border: 0.2rem solid black;
+        border-radius: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.47) 0px 4px 20px;
+        background-color: #ff773d;
+        text-align: center;
+        overflow: hidden;
+        .score__title {
+            border-bottom: 0.2rem solid black;
+            padding: 1rem;
+            background-color: #f3d265;
+        }
+        .score__count {
+            padding: 1rem 2rem 0.2rem 2rem;
+            text-align: center;
+            color: whitesmoke;
+            padding-bottom: 0.5rem;
+        }
+        h1 {
+            color: #4a0dbc;
+            text-shadow: 2px 2px $yellow;
+            padding-bottom: 0.5rem;
+        }
+        .score__text {
+            padding: 0.5rem 4rem 2rem;
+            font-weight: bolder;
+            text-align: center;
+        }
+        .buttons{
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+        }
+    }
 
+    .answers {
+        width: 80%;
+        height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        .answers__card {
+            width: 100%;
+            overflow: hidden;
+            margin: 0.5rem;
+            border: 0.2rem solid black;
+            border-radius: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.47) 0px 4px 10px;
+            background-color: rgb(200, 191, 231);
+
+            .answers__question {
+                color: whitesmoke;
+                border-bottom: 0.2rem solid black;
+                padding: 1rem 0.5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                h3 {
+                    width: 85%;
+                }
+                p {
+                    width: 15%;
+                    text-align: right;
+                }
+            }
+            .answers__question--correct {
+                background-color: rgb(40, 143, 119);
+            }
+            .answers__question--incorrect {
+                background-color: #c61b38;
+            }
+            .answers__possibleAnswers {
+                padding: 1rem 0;
+                ul {
+                    .answers__option {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -4,23 +4,24 @@ $green: #52b788;
 $yellow: #ffd500;
 $red: #d90429;
 
-
-
 .wrapper {
     background-color: $purple;
     box-sizing: border-box;
     min-height: 100vh;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
     .topHalf {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        .welcome {
-            margin: 4rem 3rem ;
-            padding: 4rem 7rem;
+        .topHalf__welcome {
+            margin: 1rem 2rem;
+            padding: 3rem 5rem;
             border: 0.2rem solid black;
-            border-radius: 2%;
+            border-radius: 2rem;
             box-shadow: rgba(0, 0, 0, 0.47) 0px 4px 16px;
             text-shadow: 4px 4px #4a0dbc;
             background-color: $green;
@@ -32,9 +33,9 @@ $red: #d90429;
             }
         }
 
-        .monster {
+        .topHalf__monster {
             margin: 0rem;
-            width: 10rem;
+            width: 8rem;
             animation: updown 4s linear infinite;
         }
         @keyframes updown {
@@ -56,22 +57,26 @@ $red: #d90429;
         justify-content: center;
         align-items: center;
 
-        .start {
+        .bottomHalf__start {
             color: $red;
-            margin-top: 3rem;
+            margin-top: 1rem;
             text-shadow: 1px 1px 1px black;
             text-align: center;
         }
 
-        .topics {
+        .bottomHalf__topics {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 2rem;
         }
+        .bottomHalf__error {
+            color: $red;
+            font-weight: bold;
+            // height: 0.5rem;
+        }
     }
 }
-    
 
 @media screen and (max-width: 950px) {
     .wrapper .topHalf {
