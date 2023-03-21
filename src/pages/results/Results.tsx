@@ -3,8 +3,6 @@ import './results.scss';
 import { Answers } from '../../modules';
 import Button from '../../components/button/Button';
 import { useNavigate } from 'react-router-dom';
-
-
 import './results.scss';
 import { GiCrossMark, GiCheckMark } from 'react-icons/gi';
 
